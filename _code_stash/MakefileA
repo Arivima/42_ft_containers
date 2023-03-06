@@ -1,0 +1,81 @@
+# Makefile 
+# archive : used previously to generate binaries with different data types
+
+int:
+	@echo $(BOLDYELLOW) "Testing all containers with type int ..." $(RESET)
+	@$(MAKE)  -C ./ft_containers TYPE=$(INT_TYPE) VALUE=$(VALUE_INT) VAL=$(VAL_INT) diff
+
+float:
+	@echo $(BOLDYELLOW) "Testing all containers with type float ..." $(RESET)
+	@$(MAKE)  -C ./ft_containers TYPE=$(FLT_TYPE) VALUE=$(VALUE_FLT) VAL=$(VAL_FLT) diff
+
+double:
+	@echo $(BOLDYELLOW) "Testing all containers with type double ..." $(RESET)
+	@$(MAKE)  -C ./ft_containers TYPE=$(DBL_TYPE) VALUE=$(VALUE_DBL) VAL=$(VAL_DBL) diff
+
+# char:
+# 	@echo $(BOLDYELLOW) "Testing all containers with type char ..." $(RESET)
+# 	@$(MAKE)  -C ./ft_containers TYPE_ID=300 TYPE=$(CHR_TYPE) VALUE=$(VALUE_CHR) VAL=$(VAL_CHR) diff
+
+# char_star:
+# 	@echo $(BOLDYELLOW) "Testing all containers with type char* ..." $(RESET)
+# 	@$(MAKE)  -C ./ft_containers TYPE_ID=$(CHAR_STAR_TYPE_ID) TYPE="char_star" diff
+
+# string:
+# 	@echo $(BOLDYELLOW) "Testing all containers with type string ..." $(RESET)
+# 	@$(MAKE) -C ./ft_containers TYPE_ID=$(STR_TYPE_ID) TYPE="string" diff
+
+
+eval: fclean
+	@echo $(BOLDMAGENTA) "Testing all containers with all types" $(RESET)
+	@$(MAKE) clean && $(MAKE)  int
+	@$(MAKE) clean && $(MAKE)  float
+	@$(MAKE) clean && $(MAKE)  double
+
+
+clean:
+	@$(MAKE)  -C ./ft_containers clean
+
+fclean: clean
+	@$(MAKE)  -C ./ft_containers fclean
+
+INT_TYPE:=int
+VALUE_INT:=5
+VAL_INT:=1
+
+FLT_TYPE:=float
+VALUE_FLT:=5.5f
+VAL_FLT:=1.1f
+
+DBL_TYPE:=double
+VALUE_DBL:=5.5
+VAL_DBL:=1.1
+
+CHR_TYPE:=char
+VALUE_CHR:=97
+VAL_CHR:=65
+
+CHAR_STAR_TYPE_ID:=100
+
+STR_TYPE_ID:=200
+
+.PHONY: 			all clean fclean int float eval
+
+# Colors
+RESET		:= "\033[0m"
+BLACK		:= "\033[30m"
+RED			:= "\033[31m"
+GREEN		:= "\033[32m"
+YELLOW		:= "\033[33m"
+BLUE		:= "\033[34m"
+MAGENTA		:= "\033[35m"
+CYAN		:= "\033[36m"
+WHITE		:= "\033[37m"
+BOLDBLACK	:= "\033[1m\033[30m"
+BOLDRED		:= "\033[1m\033[31m"
+BOLDGREEN	:= "\033[1m\033[32m"
+BOLDYELLOW	:= "\033[1m\033[33m"
+BOLDBLUE	:= "\033[1m\033[34m"
+BOLDMAGENTA	:= "\033[1m\033[35m"
+BOLDCYAN	:= "\033[1m\033[36m"
+BOLDWHITE	:= "\033[1m\033[37m"
